@@ -1,4 +1,18 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+// @ts-check
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  compiler: {
+    reactRemoveProperties: true,
+    removeConsole: {
+      exclude: ['error'],
+    },
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  experimental: {
+    typedRoutes: true,
+  },
+};
+
+module.exports = nextConfig;
