@@ -7,6 +7,9 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     colors: {
       ...colors,
@@ -24,7 +27,4 @@ module.exports = {
     },
   },
   plugins: [],
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
 };
