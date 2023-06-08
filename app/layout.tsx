@@ -1,8 +1,15 @@
 import { PropsWithChildren } from 'react';
-import { Inter } from 'next/font/google';
+import { Commissioner, Alexandria } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const alexandria = Alexandria({
+  subsets: ['latin'],
+  variable: '--font-alexandria',
+});
+const commissioner = Commissioner({
+  subsets: ['latin'],
+  variable: '--font-commissioner',
+});
 
 export const metadata = {
   title: 'Discord Clone',
@@ -12,7 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans`}>{children}</body>
+      <body className={`${alexandria.variable} ${commissioner.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

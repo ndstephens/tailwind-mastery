@@ -12,6 +12,9 @@
   :where(button, nav *) {
     @apply select-none;
   }
+  body {
+    @apply font-sans;
+  }
 
   /** OVERRIDES TAILWIND PREFLIGHT */
   button,

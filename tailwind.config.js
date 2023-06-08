@@ -26,7 +26,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-commissioner)', ...defaultTheme.fontFamily.sans],
+        title: ['var(--font-alexandria)', ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
