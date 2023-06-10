@@ -66,7 +66,7 @@ export default function ServerLink({
   return (
     <Link href={href} className="group relative block">
       <div className="absolute -left-3 flex h-full items-center">
-        <div className={indicatorStyles({ active: isActive })}></div>
+        <div className={indicatorStyles({ active: isActive })} />
       </div>
       <div className="group-active:translate-y-px">
         <div className={iconStyles({ active: isActive, server })}>

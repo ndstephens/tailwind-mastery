@@ -29,10 +29,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
               <ServerLink href="/" discord>
                 <DiscordIcon className="h-5 w-7" />
               </ServerLink>
-
               <ServerLink href="/servers/1">S1</ServerLink>
             </div>
-
             {children}
           </div>
         </main>
