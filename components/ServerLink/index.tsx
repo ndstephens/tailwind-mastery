@@ -5,13 +5,23 @@ import Link, { LinkProps } from 'next/link';
 import { PropsWithChildren } from 'react';
 import { cva } from 'class-variance-authority';
 
-const linkStyles = cva(
+const indicatorStyles = cva('rounded-e bg-white transition-all duration-200', {
+  variants: {
+    active: {
+      true: 'h-10 w-1',
+      false:
+        'h-5 w-1 opacity-0 scale-0 origin-left group-hover:opacity-100 group-hover:scale-100',
+    },
+  },
+});
+
+const iconStyles = cva(
   'flex aspect-square w-12 items-center justify-center transition-all duration-200',
   {
     variants: {
       active: {
         true: 'rounded-2xl',
-        false: 'rounded-[24px] hover:rounded-2xl',
+        false: 'rounded-[24px] group-hover:rounded-2xl',
       },
       server: {
         discord: '',
@@ -27,7 +37,8 @@ const linkStyles = cva(
       {
         server: 'discord',
         active: false,
-        className: 'bg-gray-700 text-gray-100 hover:bg-brand hover:text-white',
+        className:
+          'bg-gray-700 text-gray-100 group-hover:bg-brand group-hover:text-white',
       },
       {
         server: 'other',
@@ -53,8 +64,15 @@ export default function ServerLink({
   const server = discord ? 'discord' : 'other';
 
   return (
-    <Link href={href} className={linkStyles({ active: isActive, server })}>
-      {children}
+    <Link href={href} className="group relative block">
+      <div className="absolute -left-3 flex h-full items-center">
+        <div className={indicatorStyles({ active: isActive })}></div>
+      </div>
+      <div className="group-active:translate-y-px">
+        <div className={iconStyles({ active: isActive, server })}>
+          {children}
+        </div>
+      </div>
     </Link>
   );
 }
