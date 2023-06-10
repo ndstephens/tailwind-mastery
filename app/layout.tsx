@@ -4,7 +4,7 @@ import Image from 'next/image';
 import ServerLink from '@/components/ServerLink';
 import { DiscordIcon } from '@/components/icons';
 
-import { servers } from '@/lib/config/servers';
+import data from 'data.json';
 import './globals.css';
 
 const alexandria = Alexandria({
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 <DiscordIcon className="h-5 w-7" />
               </ServerLink>
               <hr className="mx-2 rounded border-t-2 border-t-white/[.06]" />
-              {servers.map((server) => (
+              {data.map((server) => (
                 <ServerLink key={server.id} href={`/servers/${server.id}`}>
                   <Image
                     fill

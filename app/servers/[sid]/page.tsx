@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   AddPersonIcon,
   ArrowIcon,
@@ -8,11 +9,11 @@ import {
   SpeakerphoneIcon,
   VerifiedIcon,
 } from '@/components/icons';
-import { servers } from '@/lib/config/servers';
-import Link from 'next/link';
+
+import data from 'data.json';
 
 export default function Server({ params }: { params: { sid: string } }) {
-  const server = servers.find((server) => server.id.toString() === params.sid);
+  const server = data.find((server) => server.id.toString() === params.sid);
 
   if (!server) {
     return <div>Server not found</div>;
@@ -28,7 +29,7 @@ export default function Server({ params }: { params: { sid: string } }) {
             <VerifiedIcon className="absolute h-full w-full text-gray-550" />
             <CheckIcon className="absolute h-full w-full" />
           </div>
-          {server.title}
+          {server.label}
           <ChevronIcon className="ml-auto aspect-square w-[18px] opacity-80" />
         </button>
 
