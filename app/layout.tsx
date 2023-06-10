@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import { Commissioner, Alexandria } from 'next/font/google';
 import Image from 'next/image';
 import ServerLink from '@/components/ServerLink';
-import DiscordIcon from '@/components/DiscordIcon';
+import { DiscordIcon } from '@/components/icons';
 
 import { servers } from '@/lib/config/servers';
 import './globals.css';
