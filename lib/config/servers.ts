@@ -1,17 +1,17 @@
 export const servers = [
   {
     id: 1,
-    name: 'Tailwind',
+    title: 'Tailwind CSS',
     img: 'tailwind.png',
   },
   {
     id: 2,
-    name: 'Next',
+    title: 'Next',
     img: 'next.png',
   },
   {
     id: 3,
-    name: 'Mirage',
+    title: 'Mirage',
     img: 'mirage.png',
   },
 ];
