@@ -1,9 +1,17 @@
-export default function Server() {
+import { servers } from '@/lib/config/servers';
+
+export default function Server({ params }: { params: { sid: string } }) {
+  const server = servers.find((server) => server.id.toString() === params.sid);
+
+  if (!server) {
+    return <div>Server not found</div>;
+  }
+
   return (
     <>
       <div className="flex w-60 flex-col bg-gray-800">
         <div className="flex h-12 items-center px-3 font-title font-semibold text-white shadow-md">
-          Server 1
+          {server.name}
         </div>
         <div className="flex-1 space-y-2 overflow-y-scroll p-3 font-medium text-gray-300">
           <p className="text-white">general</p>

@@ -23,45 +23,39 @@ const iconStyles = cva(
         true: 'rounded-2xl',
         false: 'rounded-[24px] group-hover:rounded-2xl',
       },
-      server: {
-        discord: '',
-        other: '',
+      dashboard: {
+        true: '',
+        false: '',
       },
     },
     compoundVariants: [
       {
-        server: 'discord',
+        dashboard: true,
         active: true,
         className: 'bg-brand text-white',
       },
       {
-        server: 'discord',
+        dashboard: true,
         active: false,
         className:
           'bg-gray-700 text-gray-100 group-hover:bg-brand group-hover:text-white',
-      },
-      {
-        server: 'other',
-        active: [true, false],
-        className: 'bg-white text-gray-800',
       },
     ],
   }
 );
 
 type ServerLinkProps = {
-  discord?: boolean;
+  dashboard?: boolean;
 } & LinkProps &
   PropsWithChildren;
 
 export default function ServerLink({
-  discord = false,
+  dashboard = false,
   href,
   children,
 }: ServerLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
-  const server = discord ? 'discord' : 'other';
 
   return (
     <Link href={href} className="group relative block">
@@ -69,7 +63,7 @@ export default function ServerLink({
         <div className={indicatorStyles({ active: isActive })} />
       </div>
       <div className="group-active:translate-y-px">
-        <div className={iconStyles({ active: isActive, server })}>
+        <div className={iconStyles({ active: isActive, dashboard })}>
           {children}
         </div>
       </div>

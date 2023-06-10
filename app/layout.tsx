@@ -1,10 +1,11 @@
 import { PropsWithChildren } from 'react';
 import { Commissioner, Alexandria } from 'next/font/google';
+import Image from 'next/image';
 import ServerLink from '@/components/ServerLink';
 import DiscordIcon from '@/components/DiscordIcon';
 
+import { servers } from '@/lib/config/servers';
 import './globals.css';
-import Image from 'next/image';
 
 const alexandria = Alexandria({
   subsets: ['latin'],
@@ -27,18 +28,20 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <main>
           <div className="flex h-screen text-gray-100">
             <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
-              <ServerLink href="/" discord>
+              <ServerLink href="/" dashboard>
                 <DiscordIcon className="h-5 w-7" />
               </ServerLink>
               <hr className="mx-2 rounded border-t-2 border-t-white/[.06]" />
-              <ServerLink href="/servers/1">
-                <Image
-                  fill
-                  className="object-cover"
-                  src="/servers/tailwind.png"
-                  alt="icon of server"
-                />
-              </ServerLink>
+              {servers.map((server) => (
+                <ServerLink key={server.id} href={`/servers/${server.id}`}>
+                  <Image
+                    fill
+                    className="object-cover"
+                    src={`/servers/${server.img}`}
+                    alt="icon of server"
+                  />
+                </ServerLink>
+              ))}
             </div>
             {children}
           </div>
