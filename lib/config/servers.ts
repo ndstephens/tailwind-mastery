@@ -6,7 +6,7 @@ export const servers = [
   },
   {
     id: 2,
-    title: 'Next',
+    title: 'Next.js',
     img: 'next.png',
   },
   {
