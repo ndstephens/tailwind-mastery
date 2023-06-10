@@ -16,7 +16,7 @@ const indicatorStyles = cva('rounded-e bg-white transition-all duration-200', {
 });
 
 const iconStyles = cva(
-  'flex aspect-square w-12 items-center justify-center transition-all duration-200',
+  'flex aspect-square w-12 items-center justify-center transition-all duration-200 overflow-hidden relative',
   {
     variants: {
       active: {

@@ -4,6 +4,7 @@ import ServerLink from '@/components/ServerLink';
 import DiscordIcon from '@/components/DiscordIcon';
 
 import './globals.css';
+import Image from 'next/image';
 
 const alexandria = Alexandria({
   subsets: ['latin'],
@@ -29,7 +30,15 @@ export default function RootLayout({ children }: PropsWithChildren) {
               <ServerLink href="/" discord>
                 <DiscordIcon className="h-5 w-7" />
               </ServerLink>
-              <ServerLink href="/servers/1">S1</ServerLink>
+              <hr className="mx-2 rounded border-t-2 border-t-white/[.06]" />
+              <ServerLink href="/servers/1">
+                <Image
+                  fill
+                  className="object-cover"
+                  src="/servers/tailwind.png"
+                  alt="icon of server"
+                />
+              </ServerLink>
             </div>
             {children}
           </div>
