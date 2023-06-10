@@ -84,7 +84,7 @@ export function SpeakerphoneIcon(
   );
 }
 
-export function ArrowComponent(
+export function ArrowIcon(
   props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
 ) {
   return (
