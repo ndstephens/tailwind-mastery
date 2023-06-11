@@ -4,7 +4,14 @@ import * as Icons from '@/components/icons';
 import { Channel } from '@/types/data';
 import data from 'data.json';
 
-export default function Server({ params }: { params: { sid: string } }) {
+type PageProps = {
+  params: {
+    sid: string;
+    cid: string;
+  };
+};
+
+export default function ChannelPage({ params }: PageProps) {
   const server = data.find((server) => server.id.toString() === params.sid);
 
   if (!server) {
