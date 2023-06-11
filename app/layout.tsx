@@ -38,6 +38,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 <ServerLink key={server.id} href={`/servers/${server.id}`}>
                   <Image
                     fill
+                    sizes="48px"
                     className="object-cover"
                     src={`/servers/${server.img}`}
                     alt="icon of server"
