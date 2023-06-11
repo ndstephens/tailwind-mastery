@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Commissioner, Alexandria } from 'next/font/google';
+import { Alexandria, Schibsted_Grotesk } from 'next/font/google';
 import Image from 'next/image';
 import ServerLink from '@/components/ServerLink';
 import { Discord } from '@/components/icons';
@@ -7,13 +7,15 @@ import { Discord } from '@/components/icons';
 import data from 'data.json';
 import './globals.css';
 
-const alexandria = Alexandria({
+// Title font
+const title = Alexandria({
   subsets: ['latin'],
-  variable: '--font-alexandria',
+  variable: '--font-title',
 });
-const commissioner = Commissioner({
+// Sans font
+const sans = Schibsted_Grotesk({
   subsets: ['latin'],
-  variable: '--font-commissioner',
+  variable: '--font-sans',
 });
 
 export const metadata = {
@@ -24,7 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${alexandria.variable} ${commissioner.variable}`}>
+      <body className={`${title.variable} ${sans.variable}`}>
         <main>
           <div className="flex h-screen text-gray-100">
             <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
