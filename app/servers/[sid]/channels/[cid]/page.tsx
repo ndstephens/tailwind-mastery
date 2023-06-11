@@ -46,7 +46,7 @@ export default function ChannelPage({ params }: PageProps) {
                   <ChannelLink
                     key={channel.id}
                     channel={channel}
-                    serverId={params.sid}
+                    params={params}
                   />
                 ))}
               </div>
@@ -78,16 +78,22 @@ export default function ChannelPage({ params }: PageProps) {
 // CHANNEL LINK
 type ChannelLinkProps = {
   channel: Channel;
-  serverId: string;
+  params: PageProps['params'];
 };
-export function ChannelLink({ channel, serverId }: ChannelLinkProps) {
+export function ChannelLink({ channel, params }: ChannelLinkProps) {
   const Icon =
     (channel.icon && Icons[channel.icon as keyof typeof Icons]) ||
     Icons.Hashtag;
+  const isActive = params.cid === channel.id.toString();
+
   return (
     <Link
-      href={`/servers/${serverId}/channels/${channel.id}`}
-      className="group mx-2 flex items-center rounded px-2 py-1 text-gray-300 hover:bg-gray-550/[0.16] hover:text-gray-100"
+      href={`/servers/${params.sid}/channels/${channel.id}`}
+      className={`${
+        isActive
+          ? 'bg-gray-550/[0.32] text-white'
+          : 'text-gray-300 hover:bg-gray-550/[0.16] hover:text-gray-100'
+      } group mx-2 flex items-center rounded px-2 py-1`}
     >
       <Icon className="mr-1.5 aspect-square w-5 text-gray-400" />
       {channel.label}
