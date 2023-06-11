@@ -30,12 +30,12 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <main>
           <div className="flex h-screen text-gray-100">
             <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
-              <ServerLink href="/" dashboard>
+              <ServerLink>
                 <Discord className="h-5 w-7" />
               </ServerLink>
               <hr className="mx-2 rounded border-t-2 border-t-white/[.06]" />
               {data.map((server) => (
-                <ServerLink key={server.id} href={`/servers/${server.id}`}>
+                <ServerLink key={server.id} serverId={server.id}>
                   <Image
                     fill
                     sizes="48px"
