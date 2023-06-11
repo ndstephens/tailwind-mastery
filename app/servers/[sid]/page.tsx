@@ -25,7 +25,7 @@ export default function Server({ params }: { params: { sid: string } }) {
           <Icons.Chevron className="ml-auto aspect-square w-[18px] opacity-80" />
         </button>
         {/* Channels */}
-        <div className="flex-1 space-y-[21px] overflow-y-scroll pt-3 font-medium text-gray-300">
+        <div className="flex-1 space-y-[21px] overflow-y-scroll py-3 font-medium text-gray-300">
           {server.categories.map((category) => (
             <div key={category.id}>
               {!!category.label && (
