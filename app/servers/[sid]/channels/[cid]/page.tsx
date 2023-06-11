@@ -3,6 +3,7 @@ import * as Icons from '@/components/icons';
 
 import { Channel } from '@/types/data';
 import data from 'data.json';
+import { cva } from 'class-variance-authority';
 
 type PageProps = {
   params: {
@@ -36,7 +37,7 @@ export default function ChannelPage({ params }: PageProps) {
           {server.categories.map((category) => (
             <div key={category.id}>
               {!!category.label && (
-                <button className="flex items-center px-0.5 font-title text-xs uppercase tracking-wide">
+                <button className="flex w-full items-center px-0.5 font-title text-xs uppercase tracking-wide hover:text-gray-100">
                   <Icons.Arrow className="mr-0.5 aspect-square w-3" />
                   {category.label}
                 </button>
@@ -76,6 +77,21 @@ export default function ChannelPage({ params }: PageProps) {
 }
 
 // CHANNEL LINK
+const linkStyles = cva(
+  'relative group mx-2 flex items-center rounded px-2 py-1',
+  {
+    variants: {
+      state: {
+        active: 'bg-gray-550/[0.32] text-white',
+        inactiveRead:
+          'text-gray-300 hover:bg-gray-550/[0.16] hover:text-gray-100 active:bg-gray-550/[0.24]',
+        inactiveUnread:
+          'text-white hover:bg-gray-550/[0.16] active:bg-gray-550/[0.24]',
+      },
+    },
+  }
+);
+
 type ChannelLinkProps = {
   channel: Channel;
   params: PageProps['params'];
@@ -84,17 +100,22 @@ export function ChannelLink({ channel, params }: ChannelLinkProps) {
   const Icon =
     (channel.icon && Icons[channel.icon as keyof typeof Icons]) ||
     Icons.Hashtag;
-  const isActive = params.cid === channel.id.toString();
+
+  const state =
+    params.cid === channel.id.toString()
+      ? 'active'
+      : channel.unread
+      ? 'inactiveUnread'
+      : 'inactiveRead';
 
   return (
     <Link
       href={`/servers/${params.sid}/channels/${channel.id}`}
-      className={`${
-        isActive
-          ? 'bg-gray-550/[0.32] text-white'
-          : 'text-gray-300 hover:bg-gray-550/[0.16] hover:text-gray-100'
-      } group mx-2 flex items-center rounded px-2 py-1`}
+      className={linkStyles({ state })}
     >
+      {state === 'inactiveUnread' && (
+        <div className="absolute -left-2 h-2 w-1 rounded-e-full bg-white" />
+      )}
       <Icon className="mr-1.5 aspect-square w-5 text-gray-400" />
       {channel.label}
       <Icons.AddPerson className="ml-auto aspect-square w-4 text-gray-200 opacity-0 hover:text-gray-100 group-hover:opacity-100" />
