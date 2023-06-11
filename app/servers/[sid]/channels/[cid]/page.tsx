@@ -1,12 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import * as Icons from '@/components/icons';
-
-import { Channel } from '@/types/data';
-import data from 'data.json';
 import { cva } from 'class-variance-authority';
-import useLocalStorage from '@/lib/hooks/useLocalStorage';
+import { Channel } from '@/types/data';
+// Trying this hook, but doesn't register what's in local-storage on page refresh.
+import { useLocalStorage } from 'usehooks-ts';
+
+import * as Icons from '@/components/icons';
+// import useLocalStorage from '@/lib/hooks/useLocalStorage';
+
+import data from 'data.json';
 
 type PageProps = {
   params: {
@@ -19,8 +22,8 @@ export default function ChannelPage({ params }: PageProps) {
   // When closing a category we only want to show unread (and active) channels.
   // Save the list of closed categories in local-storage so it persists when refreshing the page, navigating away, changing servers, or changing channels.
   const [closedCategoryIds, setClosedCategoryIds] = useLocalStorage<number[]>(
-    [],
-    `server-${params.sid}-closed-categories`
+    `server-${params.sid}-closed-categories`,
+    []
   );
   function toggleCategoryId(categoryId: number) {
     setClosedCategoryIds((ps) =>
