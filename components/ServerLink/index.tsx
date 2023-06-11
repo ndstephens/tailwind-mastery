@@ -55,7 +55,8 @@ export default function ServerLink({
   children,
 }: ServerLinkProps) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive =
+    href === '/' ? pathname === href : pathname.startsWith(href as string);
 
   return (
     <Link href={href} className="group relative block">
