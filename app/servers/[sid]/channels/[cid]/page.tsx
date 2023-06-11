@@ -43,7 +43,11 @@ export default function ChannelPage({ params }: PageProps) {
               )}
               <div className="mt-[5px] space-y-0.5">
                 {category.channels.map((channel) => (
-                  <ChannelLink key={channel.id} channel={channel} />
+                  <ChannelLink
+                    key={channel.id}
+                    channel={channel}
+                    serverId={params.sid}
+                  />
                 ))}
               </div>
             </div>
@@ -74,14 +78,15 @@ export default function ChannelPage({ params }: PageProps) {
 // CHANNEL LINK
 type ChannelLinkProps = {
   channel: Channel;
+  serverId: string;
 };
-export function ChannelLink({ channel }: ChannelLinkProps) {
+export function ChannelLink({ channel, serverId }: ChannelLinkProps) {
   const Icon =
     (channel.icon && Icons[channel.icon as keyof typeof Icons]) ||
     Icons.Hashtag;
   return (
     <Link
-      href="#"
+      href={`/servers/${serverId}/channels/${channel.id}`}
       className="group mx-2 flex items-center rounded px-2 py-1 text-gray-300 hover:bg-gray-550/[0.16] hover:text-gray-100"
     >
       <Icon className="mr-1.5 aspect-square w-5 text-gray-400" />
