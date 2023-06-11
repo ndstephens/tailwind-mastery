@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import { Commissioner, Alexandria } from 'next/font/google';
 import Image from 'next/image';
 import ServerLink from '@/components/ServerLink';
-import { DiscordIcon } from '@/components/icons';
+import { Discord } from '@/components/icons';
 
 import data from 'data.json';
 import './globals.css';
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <div className="flex h-screen text-gray-100">
             <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
               <ServerLink href="/" dashboard>
-                <DiscordIcon className="h-5 w-7" />
+                <Discord className="h-5 w-7" />
               </ServerLink>
               <hr className="mx-2 rounded border-t-2 border-t-white/[.06]" />
               {data.map((server) => (

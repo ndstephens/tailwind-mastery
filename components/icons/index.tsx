@@ -1,8 +1,6 @@
 import { PropsWithoutRef } from 'react';
 
-export function DiscordIcon(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Discord(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg aria-hidden="false" viewBox="0 0 28 20" {...props}>
       <path
@@ -13,9 +11,7 @@ export function DiscordIcon(
   );
 }
 
-export function VerifiedIcon(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Verified(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg
       aria-label="Verified"
@@ -32,9 +28,7 @@ export function VerifiedIcon(
   );
 }
 
-export function CheckIcon(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Check(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg aria-hidden="false" viewBox="0 0 16 15.2" {...props}>
       <path
@@ -45,9 +39,7 @@ export function CheckIcon(
   );
 }
 
-export function ChevronIcon(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Chevron(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg viewBox="0 0 18 18" fill="none" {...props}>
       <path
@@ -58,7 +50,7 @@ export function ChevronIcon(
   );
 }
 
-export function BookIcon(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
+export function Book(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg viewBox="0 0 40 40" {...props}>
       <path
@@ -71,7 +63,7 @@ export function BookIcon(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   );
 }
 
-export function SpeakerphoneIcon(
+export function Speakerphone(
   props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
 ) {
   return (
@@ -84,9 +76,7 @@ export function SpeakerphoneIcon(
   );
 }
 
-export function ArrowIcon(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Arrow(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
@@ -99,7 +89,7 @@ export function ArrowIcon(
   );
 }
 
-export function AddPersonIcon(
+export function AddPerson(
   props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
 ) {
   return (
@@ -112,9 +102,7 @@ export function AddPersonIcon(
   );
 }
 
-export function HashtagIcon(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Hashtag(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
