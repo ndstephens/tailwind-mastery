@@ -4,9 +4,9 @@
 const nextConfig = {
   compiler: {
     reactRemoveProperties: true,
-    removeConsole: {
-      exclude: ['error'],
-    },
+    // removeConsole: {
+    //   exclude: ['error'],
+    // },
   },
   poweredByHeader: false,
   reactStrictMode: true,
