@@ -14,6 +14,15 @@ type Category = {
 export type Channel = {
   id: number;
   label: string;
+  description?: string;
   icon?: string;
   unread?: boolean;
+  messages: Array<Message>;
+};
+
+type Message = {
+  user: string;
+  avatarUrl: string;
+  date: string;
+  text: string;
 };
