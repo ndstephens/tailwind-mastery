@@ -9,7 +9,8 @@ import { useLocalStorage } from 'usehooks-ts';
 import * as Icons from '@/components/icons';
 // import useLocalStorage from '@/lib/hooks/useLocalStorage';
 
-import data from 'data.json';
+// import data from 'data.json';
+import { data } from 'data';
 
 type PageProps = {
   params: {
@@ -34,10 +35,21 @@ export default function ChannelPage({ params }: PageProps) {
   }
 
   const server = data.find((server) => server.id.toString() === params.sid);
+  const channel = server?.categories
+    .map((c) => c.channels)
+    .flat()
+    .find((channel) => channel.id.toString() === params.cid) as
+    | Channel
+    | undefined;
+  const Icon =
+    (channel?.icon && Icons[channel?.icon as keyof typeof Icons]) ||
+    Icons.Hashtag;
 
   if (!server) {
     return <div>Server not found</div>;
   }
+
+  // TODO: The Channels Section should be a separate page. Otherwise, every time I click on a channel that's "below the fold" of the section's scrollable area, the channel section will scroll back to the top b/c the entire page is being reloaded instead of just the Messages Section being updated.
 
   return (
     <>
@@ -87,9 +99,42 @@ export default function ChannelPage({ params }: PageProps) {
       </div>
 
       {/* MESSAGES SECTION */}
-      <div className="flex flex-1 flex-col bg-gray-700">
+      <div className="flex min-w-0 flex-1 flex-col bg-gray-700">
         {/* Header */}
-        <div className="flex h-12 items-center px-3 shadow-sm">general</div>
+        <div className="flex h-12 items-center px-2 shadow-sm">
+          <div className="flex items-center">
+            <Icon className="mx-2 h-6 w-6 font-semibold text-gray-400" />
+            <span className="mr-2 font-title text-white">{channel?.label}</span>
+          </div>
+          {channel?.description && (
+            <>
+              <div className="bg-white/{.06} mx-2 h-6 w-px" />
+              <div className="mx-2 truncate text-sm font-medium text-gray-200">
+                {channel.description}
+              </div>
+            </>
+          )}
+          <div className="ml-auto flex items-center">
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.HashtagWithSpeechBubble className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.Bell className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.Pin className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.People className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.Inbox className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.QuestionCircle className="mx-2 h-6 w-6" />
+            </button>
+          </div>
+        </div>
         {/* Messages */}
         <div className="flex-1 space-y-4 overflow-y-scroll p-3">
           {[...Array(40)].map((_, i) => (
