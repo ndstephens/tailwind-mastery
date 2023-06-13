@@ -203,9 +203,7 @@ export function QuestionCircle(
   );
 }
 
-export function Hourglass(
-  props: PropsWithoutRef<JSX.IntrinsicElements['svg']>
-) {
+export function Spyglass(props: PropsWithoutRef<JSX.IntrinsicElements['svg']>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <path
