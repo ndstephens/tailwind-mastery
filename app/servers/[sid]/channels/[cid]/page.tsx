@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { cva } from 'class-variance-authority';
-import { Channel } from '@/types/data';
+import { Channel, Message } from '@/types/data';
 // Trying this hook, but doesn't register what's in local-storage on page refresh.
 import { useLocalStorage } from 'usehooks-ts';
 
@@ -148,14 +149,15 @@ export default function ChannelPage({ params }: PageProps) {
           </div>
         </div>
         {/* Messages */}
-        <div className="flex-1 space-y-4 overflow-y-scroll p-3">
-          {[...Array(40)].map((_, i) => (
-            <p key={i}>
-              Message {i}. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Asperiores, quam quod! Dicta voluptas omnis vel debitis
-              libero obcaecati ex earum harum laborum in nostrum odit, quos
-              aliquid esse deleniti officia.
-            </p>
+        <div className="flex-1 overflow-y-scroll">
+          {channel?.messages.map((message, i) => (
+            <div key={message.id}>
+              {i === 0 || message.user !== channel.messages[i - 1].user ? (
+                <MessageWithUser message={message} />
+              ) : (
+                <Message message={message} />
+              )}
+            </div>
           ))}
         </div>
       </div>
@@ -223,5 +225,38 @@ export function ChannelLink({
       {channel.label}
       <Icons.AddPerson className="ml-auto aspect-square w-4 text-gray-200 opacity-0 hover:text-gray-100 group-hover:opacity-100" />
     </Link>
+  );
+}
+
+// MESSAGE WITH USER
+function MessageWithUser({ message }: { message: Message }) {
+  return (
+    <div className="mt-[17px] flex py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[.07]">
+      <div className="relative mr-4 h-10 min-w-[40px] overflow-hidden rounded-full">
+        <Image
+          fill
+          sizes="40px"
+          className="object-cover"
+          src={message.avatarUrl}
+          alt={`avatar for ${message.user}`}
+        />
+      </div>
+      <div>
+        <p className="flex items-baseline gap-2 font-medium">
+          <span className="text-green-400">{message.user}</span>
+          <span className="text-xs text-gray-400">{message.date}</span>
+        </p>
+        <p className="text-gray-100">{message.text}</p>
+      </div>
+    </div>
+  );
+}
+
+// MESSAGE
+function Message({ message }: { message: Message }) {
+  return (
+    <div className="py-0.5 pl-4 pr-16 leading-[22px] hover:bg-gray-950/[.07]">
+      <p className="pl-14 text-gray-100">{message.text}</p>
+    </div>
   );
 }
