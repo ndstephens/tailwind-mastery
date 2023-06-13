@@ -1,4 +1,6 @@
-export type Data = {
+export type Data = Array<Server>;
+
+export type Server = {
   id: number;
   label: string;
   img: string;

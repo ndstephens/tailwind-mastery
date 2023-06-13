@@ -3,14 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cva } from 'class-variance-authority';
-import { Channel, Message } from '@/types/data';
+import { Channel, Data, Message } from '@/types/data';
+import * as Icons from '@/components/icons';
+
 // Trying this hook, but doesn't register what's in local-storage on page refresh.
 import { useLocalStorage } from 'usehooks-ts';
-
-import * as Icons from '@/components/icons';
 // import useLocalStorage from '@/lib/hooks/useLocalStorage';
 
-// import data from 'data.json';
 import { data } from 'data';
 
 type PageProps = {
@@ -35,13 +34,13 @@ export default function ChannelPage({ params }: PageProps) {
     );
   }
 
-  const server = data.find((server) => server.id.toString() === params.sid);
+  const server = (data as Data).find(
+    (server) => server.id.toString() === params.sid
+  );
   const channel = server?.categories
     .map((c) => c.channels)
     .flat()
-    .find((channel) => channel.id.toString() === params.cid) as
-    | Channel
-    | undefined;
+    .find((channel) => channel.id.toString() === params.cid);
   const Icon =
     (channel?.icon && Icons[channel?.icon as keyof typeof Icons]) ||
     Icons.Hashtag;

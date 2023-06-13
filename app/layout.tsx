@@ -3,8 +3,9 @@ import { Alexandria, Schibsted_Grotesk } from 'next/font/google';
 import Image from 'next/image';
 import ServerLink from '@/components/ServerLink';
 import { Discord } from '@/components/icons';
+import { Data } from '@/types/data';
 
-import data from 'data.json';
+import { data } from 'data';
 import './globals.css';
 
 // Title font
@@ -34,8 +35,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 <Discord className="h-5 w-7" />
               </ServerLink>
               <hr className="mx-2 rounded border-t-2 border-t-white/[.06]" />
-              {data.map((server) => (
-                <ServerLink key={server.id} serverId={server.id}>
+              {(data as Data).map((server) => (
+                <ServerLink key={server.id} server={server}>
                   <Image
                     fill
                     sizes="48px"
