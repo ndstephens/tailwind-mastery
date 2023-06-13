@@ -202,7 +202,6 @@ export const data = [
           {
             id: 21,
             label: 'general',
-            icon: 'HashtagWithSpeechBubble',
             description: 'Discussions about Next.js in general',
             messages: getMessages(),
           },
