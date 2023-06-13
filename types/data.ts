@@ -20,7 +20,8 @@ export type Channel = {
   messages: Array<Message>;
 };
 
-type Message = {
+export type Message = {
+  id: number;
   user: string;
   avatarUrl: string;
   date: string;

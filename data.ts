@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { format } from 'date-fns';
 
 faker.seed(123);
 
@@ -274,22 +275,20 @@ export const data = [
   },
 ];
 
-function getRandomInt(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-}
-
 function getMessages() {
-  return [...Array(getRandomInt(7, 25))]
+  return [...Array(faker.number.int({ min: 7, max: 25 }))]
     .map(() => {
       let user = faker.internet.userName();
-      let avatarUrl = faker.image.avatar();
+      let avatarUrl = `/avatars/${faker.number.int({
+        min: 0,
+        max: 25,
+      })}.jpg`;
 
-      return [...Array(getRandomInt(1, 4))].map(() => ({
+      return [...Array(faker.number.int({ min: 1, max: 4 }))].map(() => ({
+        id: faker.number.int(),
         user,
         avatarUrl,
-        date: '01/15/2021',
+        date: format(new Date(faker.date.past()), 'MM/dd/yyyy'),
         text: faker.lorem.sentences(3),
       }));
     })
