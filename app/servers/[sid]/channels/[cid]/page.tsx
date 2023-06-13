@@ -54,7 +54,7 @@ export default function ChannelPage({ params }: PageProps) {
   return (
     <>
       {/* CHANNELS SECTION */}
-      <div className="isolate flex w-60 flex-col bg-gray-800">
+      <div className="isolate hidden w-60 flex-col bg-gray-800 md:flex">
         {/* Header */}
         <button className="z-10 flex h-12 items-center px-4 font-title text-[15px] font-semibold text-white shadow-sm transition hover:bg-gray-550/[0.16]">
           <div className="relative mr-1 aspect-square w-4">
@@ -110,13 +110,23 @@ export default function ChannelPage({ params }: PageProps) {
           </div>
           {channel?.description && (
             <>
-              <div className="mx-2 h-6 w-px bg-white/[.06]" />
-              <div className="mx-2 truncate text-sm font-medium text-gray-200">
+              <div className="mx-2 hidden h-6 w-px bg-white/[.06] md:block" />
+              <div className="mx-2 hidden truncate text-sm font-medium text-gray-200 md:block">
                 {channel.description}
               </div>
             </>
           )}
-          <div className="ml-auto flex items-center">
+          {/* Mobile Buttons */}
+          <div className="ml-auto flex items-center md:hidden">
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.HashtagWithSpeechBubble className="mx-2 h-6 w-6" />
+            </button>
+            <button className="text-gray-200 hover:text-gray-100">
+              <Icons.People className="mx-2 h-6 w-6" />
+            </button>
+          </div>
+          {/* Desktop Buttons */}
+          <div className="ml-auto hidden items-center md:flex">
             <button className="text-gray-200 hover:text-gray-100">
               <Icons.HashtagWithSpeechBubble className="mx-2 h-6 w-6" />
             </button>

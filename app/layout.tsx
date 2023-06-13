@@ -30,7 +30,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={`${title.variable} ${sans.variable}`}>
         <main>
           <div className="flex h-screen text-gray-100">
-            <div className="space-y-2 overflow-y-scroll bg-gray-900 p-3">
+            <div className="hidden space-y-2 overflow-y-scroll bg-gray-900 p-3 md:block">
               <ServerLink>
                 <Discord className="h-5 w-7" />
               </ServerLink>
