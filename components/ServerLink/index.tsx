@@ -1,10 +1,9 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import Link from 'next/link';
-import { PropsWithChildren } from 'react';
 import { cva } from 'class-variance-authority';
-import { Server } from '@/types/data';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { PropsWithChildren } from 'react';
 
 const indicatorStyles = cva('rounded-e bg-white transition-all duration-200', {
   variants: {
@@ -46,16 +45,18 @@ const iconStyles = cva(
 );
 
 type ServerLinkProps = {
-  server?: Server;
+  serverId?: number;
+  href: string;
 } & PropsWithChildren;
 
-export default function ServerLink({ server, children }: ServerLinkProps) {
+export default function ServerLink({
+  serverId,
+  href,
+  children,
+}: ServerLinkProps) {
   const params = useParams();
 
-  const isActive = params.sid === server?.id?.toString();
-  const href = !server?.id
-    ? '/'
-    : `/servers/${server?.id}/channels/${server?.categories[0].channels[0].id}`;
+  const isActive = params.sid === serverId?.toString();
 
   return (
     <Link href={href} className="group relative block">
@@ -63,9 +64,7 @@ export default function ServerLink({ server, children }: ServerLinkProps) {
         <div className={indicatorStyles({ active: isActive })} />
       </div>
       <div className="group-active:translate-y-px">
-        <div
-          className={iconStyles({ active: isActive, dashboard: !server?.id })}
-        >
+        <div className={iconStyles({ active: isActive, dashboard: !serverId })}>
           {children}
         </div>
       </div>

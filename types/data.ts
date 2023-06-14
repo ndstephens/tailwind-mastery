@@ -7,7 +7,7 @@ export type Server = {
   categories: Array<Category>;
 };
 
-type Category = {
+export type Category = {
   id: number;
   label: string;
   channels: Array<Channel>;
